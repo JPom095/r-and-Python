@@ -57,12 +57,19 @@ cor.test(girls_grades, girls_time_spend, method = "pearson")
 cor.test(boys_grades, boys_time_spend, method = "pearson")
 # correlation for girls: 0.907
 # correlation for boys: 0.862
-boy_and_girl_cc <- data.frame(girls_grades, girls_time_spend, boys_grades, boys_time_spend)
+girl_cc <- data.frame(girls_grades, girls_time_spend)
+boy_cc<- data.frame(boys_grades, boys_time_spend)
 install.packages("GGally")
 library(ggplot2)
 library(GGally)
 ggpairs(
-  boy_and_girl_cc,
+  girl_cc,
+  upper = list(continuous = wrap("cor", size = 5)),
+  lower = list(continuous = "points"),
+  diag  = list(continuous = "densityDiag")
+)
+ggpairs(
+  boy_cc,
   upper = list(continuous = wrap("cor", size = 5)),
   lower = list(continuous = "points"),
   diag  = list(continuous = "densityDiag")
